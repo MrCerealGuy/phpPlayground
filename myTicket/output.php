@@ -29,6 +29,7 @@
         
         $pdf->Image('img/ticket-template.png',5,5+($i*65),200,60,'PNG');
         $pdf->SetFont('Arial', 'B', 16);
+        $pdf->SetTextColor(255,255,255);
         $pdf->Cell(40, 10, $eventname);
         $pdf->Ln(10);
         $pdf->Cell(40, 10, $location);
