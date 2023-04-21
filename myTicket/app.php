@@ -32,21 +32,21 @@
                         <label class="form-label" for="idEventname">Event name:</label>
                     </div>
                     <div class="col-9">
-                        <input type="text" class="form-control" id="idEventname" name="eventname" placeholder="e.g. BUGA MANNHEIM 23">
+                        <input type="text" class="form-control" name="eventname" value="<? echo isset($_POST['eventname']) ? $_POST['eventname'] : ''; ?>" placeholder="e.g. BUGA MANNHEIM 23">
                     </div>
 
                     <div class="col-3">
                         <label class="form-label">Location:</label>
                     </div>
                     <div class="col-9">
-                        <input type="text" class="form-control" name="location" placeholder="e.g. Luisenpark Mannheim">
+                        <input type="text" class="form-control" name="location" value="<? echo isset($_POST['location']) ? $_POST['location'] : ''; ?>" placeholder="e.g. Luisenpark Mannheim">
                     </div>
 
                     <div class="col-3">
                         <label class="form-label">Date/Time:</label>
                     </div>
                     <div class="col-9">
-                        <input type="text" class="form-control" name="datetime" placeholder="e.g. 06.06.2023">
+                        <input type="text" class="form-control" name="datetime" value="<? echo isset($_POST['datetime']) ? $_POST['datetime'] : ''; ?>" placeholder="e.g. 06.06.2023">
                     </div>
 
                     <div class="col-12 gy-5">
@@ -57,25 +57,29 @@
                         <label class="form-label">First name:</label>
                     </div>
                     <div class="col-9">
-                        <input type="text" class="form-control" name="firstname" placeholder="e.g. Max">
+                        <input type="text" class="form-control" name="firstname" value="<? echo isset($_POST['firstname']) ? $_POST['firstname'] : ''; ?>" placeholder="e.g. Max">
                     </div>
 
                     <div class="col-3">
                         <label class="form-label">Last name:</label>
                     </div>
                     <div class="col-9">
-                        <input type="text" class="form-control" name="lastname" placeholder="e.g. Mustermann">
+                        <input type="text" class="form-control" name="lastname" value="<? echo isset($_POST['lastname']) ? $_POST['lastname'] : ''; ?>" placeholder="e.g. Mustermann">
+                    </div>
+
+                    <div class="col-3">
+                        <label class="form-label">Tickets/Person:</label>
+                    </div>
+                    <div class="col-9">
+                        <input type="text" class="form-control" name="tickets" value="<? echo isset($_POST['tickets']) ? $_POST['tickets'] : ''; ?>" placeholder="e.g. 4">
                     </div>
 
                     <div class="col-12">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">Generate Tickets</button>
                     </div>
                 </form>
             </div>
             <div class="col-6" id="idPdfOutput">
-                <? foreach ($_POST as $key => $value)
-                    echo "$key=$value&amp;" ?>
-
                     <object data="output.php?<? foreach ($_POST as $key => $value)
                     echo "$key=$value&" ?>" type="application/pdf" width="100%" height="800px">
                         <p>It appears you don't have a PDF plugin for this browser.
@@ -86,5 +90,4 @@
             </div>
         </div>
     </body>
-
-    </html>
+</html>

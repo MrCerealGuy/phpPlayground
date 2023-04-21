@@ -1,44 +1,36 @@
 <?php
     require('fpdf.php');
 
-    $firstname = "";
-    $lastname = "";
-    $eventname = "";
-    $location = "";
-    $datetime = "";
+    $tickets = "";
 
-    if (isset($_GET["eventname"])) 
-        $eventname =  $_GET["eventname"];
-
-    if (isset($_GET["firstname"])) 
-        $firstname =  $_GET["firstname"];
-
-    if (isset($_GET["lastname"])) 
-        $lastname =  $_GET["lastname"];
-
-    if (isset($_GET["location"])) 
-        $location =  $_GET["location"];
-
-    if (isset($_GET["datetime"])) 
-        $datetime =  $_GET["datetime"];
+    if (isset($_GET["tickets"]))
+        if(empty($_GET["tickets"]))
+            $tickets = 0;
+        else
+            $tickets = intval($_GET["tickets"]);
 
     $pdf = new FPDF();
     $pdf->AddPage();
 
-    for ($i = 0; $i<=3; $i++) {
+    for ($i = 0; $i<$tickets; $i++) {
+
+        if ($i != 0 && ($i % 4) == 0)
+            $pdf->AddPage();
         
-        $pdf->Image('img/ticket-template.png',5,5+($i*65),200,60,'PNG');
+        $pdf->Image('img/ticket-template.png',5,5+(($i % 4)*65),200,60,'PNG');
+
         $pdf->SetFont('Arial', 'B', 16);
         $pdf->SetTextColor(255,255,255);
-        $pdf->Cell(40, 10, $eventname);
+
+        $pdf->Cell(40, 10, $_GET["eventname"]);
         $pdf->Ln(10);
-        $pdf->Cell(40, 10, $location);
+        $pdf->Cell(40, 10, $_GET["location"]);
         $pdf->Ln(20);
         $pdf->SetX(40);
-        $pdf->Cell(40, 10, $firstname." ".$lastname);
+        $pdf->Cell(40, 10, $_GET["firstname"]." ".$_GET["lastname"]);
         $pdf->Ln(15);
         $pdf->SetX(90);
-        $pdf->Cell(40, 10, $datetime);
+        $pdf->Cell(40, 10, $_GET["datetime"]);
 
         $pdf->Ln(20);
     }
