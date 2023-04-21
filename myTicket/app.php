@@ -15,7 +15,33 @@
         <div class="container">
             <div class="row">
                 <div class="col">
+                    <h1>myTicket App</h1>
+                    <h2>A simple PHP event ticket generator</h2>
+
+                    <hr>
+
                     <form action="app.php" method="post">
+                        <div class="mb-3">
+                            <h3>Event information</h3>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Event name:</label>
+                            <input type="text" class="form-control" name="eventname">
+                        </div>
+                         <div class="mb-3">
+                            <label class="form-label">Location:</label>
+                            <input type="text" class="form-control" name="location">
+                        </div>
+                         <div class="mb-3">
+                            <label class="form-label">Date/Time:</label>
+                            <input type="text" class="form-control" name="datetime">
+                        </div>
+
+                        <div class="mb-3">
+                            <h3>Personal information</h3>
+                        </div>
+
                         <div class="mb-3">
                             <label class="form-label">First name:</label>
                             <input type="text" class="form-control" name="firstname">
@@ -29,7 +55,9 @@
                     </form>
                 </div>
                 <div class="col">
-                    <object data="output.php?firstname=<?if (isset($_POST["firstname"])) echo $_POST["firstname"];?>&lastname=<?if (isset($_POST["lastname"])) echo $_POST["lastname"];?>" 
+                    <? foreach ($_POST as $key => $value) echo "$key=$value&amp;" ?>
+
+                    <object data="output.php?<? foreach ($_POST as $key => $value) echo "$key=$value&" ?>"
                         type="application/pdf" width="100%" height="800px"> 
                         <p>It appears you don't have a PDF plugin for this browser.
                         No biggie... you can <a href="resume.pdf">click here to
